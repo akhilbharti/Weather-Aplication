@@ -1,0 +1,15 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "weather App using Dark Sky Api to fetch the weather data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/akhilbharti/Weather-Aplication.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
