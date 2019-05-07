@@ -1,13 +1,10 @@
 const request = require("request");
-const temperature = (data, callback) => {
-  const lat = data.latitude;
-  const long = data.longitude;
+const temperature = (latitude, longitude, callback) => {
   const tempurl =
     "https://api.darksky.net/forecast/3b92f47d0714b0cd5239098133c8d29a/" +
-    encodeURIComponent(long) +
+    latitude +
     "," +
-    encodeURIComponent(lat) +
-    "?&units=si";
+    longitude;
   //console.log(tempurl);
   request({ url: tempurl, json: true }, (error, response) => {
     if (error) {
@@ -15,7 +12,15 @@ const temperature = (data, callback) => {
     } else if (response.body.error) {
       callback(response.body.error, undefined);
     } else {
-      callback(undefined, response.body.currently.temperature);
+      callback(
+        undefined,
+        response.body.daily.data[0].summary +
+          " It is currently " +
+          response.body.currently.temperature +
+          " degress out. There is a " +
+          response.body.currently.precipProbability +
+          "% chance of rain."
+      );
     }
   });
 };

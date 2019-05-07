@@ -1,11 +1,19 @@
 const geocode = require("./utils.js/geocode");
 const temperature = require("./utils.js/temperature");
-
-geocode("Rajpur Road, Dehradun, Uttarakhand", (error, data) => {
-  console.log("Error", error);
-  console.log("Data", data);
-  temperature(data, (error, data) => {
-    console.log("Error", error);
-    console.log("Data", data + " degrees");
+const command = process.argv[2];
+if (!command) {
+  console.log("enter a location");
+} else {
+  geocode(command, (error, data) => {
+    if (error) {
+      return console.log(error);
+    }
+    temperature(data.latitude, data.longitude, (error, forecastdata) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log(data.location);
+      console.log(forecastdata);
+    });
   });
-});
+}

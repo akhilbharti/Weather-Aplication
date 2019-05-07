@@ -11,8 +11,8 @@ const geocode = (address, callback) => {
       callback("invalid request", undefined);
     } else {
       callback(undefined, {
-        latitude: response.body.features[0].center[0],
-        longitude: response.body.features[0].center[1],
+        latitude: response.body.features[0].center[1], //second latitude
+        longitude: response.body.features[0].center[0], //first longitude
         location: response.body.features[0].place_name
       });
     }
